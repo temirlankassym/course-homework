@@ -9,13 +9,11 @@
 </head>
 <body>
     <div style="text-align: center">
-
         <h1>Google</h1>
         <form action="finder.php" method="get">
             <input type="text" name="str">
             <input type="submit" value="Submit">
         </form>
-
     </div>
 </body>
 </html>
