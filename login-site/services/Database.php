@@ -1,11 +1,10 @@
 <?php
-session_start();
 class Database{
     private $db;
 
     public function __construct(){
         try {
-            $this->db = new PDO('sqlite:services/database.sqlite3');
+            $this->db = new PDO('sqlite:../services/database.sqlite3');
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->createTable();
         }catch (PDOException $e){
@@ -13,7 +12,7 @@ class Database{
         }
     }
 
-    public function getAll(){
+    public function get(){
         $sql = "SELECT * FROM Users";
         $cursor = $this->db->prepare($sql);
         $cursor->execute();
@@ -43,10 +42,10 @@ class Database{
         if($cursor->fetch()[0]> 0){
             $_SESSION['username'] = $username;
             unset($_SESSION['error']);
-            header("Location: dashboard.php");
+            return true;
         }else{
             $_SESSION['error'] = "Invalid username or password";
-            header("Location: index.php");
+            return false;
         }
     }
 }

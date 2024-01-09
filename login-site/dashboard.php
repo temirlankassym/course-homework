@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start()?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +10,13 @@
 </head>
 <body>
     <h2>Welcome <?=$_SESSION['username']?></h2>
+    <form action="dashboard.php" method="post">
+        <input type="submit" name="logout" value="Logout">
+    </form>
+    <?php if(isset($_POST['logout'])){
+        session_destroy();
+        header("Location: index.php");
+    }?>
 </body>
 </html>
 <?php
