@@ -1,0 +1,4 @@
+composer.json
+composer.lock
+app/Services/Database.sqlite3
+vendor
