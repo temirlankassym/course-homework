@@ -13,6 +13,7 @@ class Task extends Model
         'id',
         'title',
         'user_id',
+        'completed'
     ];
 
     protected $hidden = [
@@ -23,11 +24,15 @@ class Task extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function taskHistory(){
-        return $this->hasOne(TaskHistory::class);
+    public static function getCompletedTasks(){
+        return self::where('user_id',auth()->id())
+            ->where('completed',true)
+            ->get();
     }
 
     public static function getTasks(){
-        return self::where('user_id',auth()->id())->get();
+        return self::where('user_id',auth()->id())
+            ->where('completed',false)
+            ->get();
     }
 }

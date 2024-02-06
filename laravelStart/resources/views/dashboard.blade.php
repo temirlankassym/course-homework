@@ -22,7 +22,7 @@
         Wind: {{$weather['current']['wind_kph']}}
     </div>
     <button id="logout-btn"><a href="/logout">Logout</a></button>
-    <button id="history-btn"><a href="/history">Completed Tasks</a></button>
+    <button id="history-btn"><a href="/completed">Completed Tasks</a></button>
     <h1>Hello {{auth()->user()->username}}</h1>
     <p style="color: white">Add new Task</p>
     <hr>

@@ -29,9 +29,9 @@ Route::post('/login',[AuthController::class,'login']);
 Route::get('/tasks', [TaskController::class,'show'])->middleware('auth');;
 Route::post('/tasks',[TaskController::class,'create'])->middleware('auth');;;
 
-Route::get('/history', [TaskController::class,'showHistory'])->middleware('auth');
+Route::get('/completed', [TaskController::class,'showCompleted'])->middleware('auth');
 
-Route::get('/completed/{id}',[TaskController::class,'completed'])->middleware('auth');
+Route::get('/completed/{id}',[TaskController::class,'complete'])->middleware('auth');
 Route::get('/delete/{id}',[TaskController::class,'delete'])->middleware('auth');
 
 Route::get('/api', [ApiController::class,'getApiData']);

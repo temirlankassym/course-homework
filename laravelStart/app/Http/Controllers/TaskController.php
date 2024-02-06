@@ -24,14 +24,13 @@ class TaskController extends Controller
         return redirect('/tasks');
     }
 
-    public function completed($id){
-        TaskHistory::create(Task::find($id)->toArray());
-        Task::destroy('id',$id);
+    public function complete($id){
+        Task::find($id)->update(['completed'=>true]);
         return redirect('/tasks');
     }
 
-    public function showHistory(){
-        return view('history',['tasks'=>TaskHistory::getTasksHistory(),'weather'=>ApiController::getApiData()]);
+    public function showCompleted(){
+        return view('completedTasks',['tasks'=>Task::getCompletedTasks()]);
     }
 
     public function show(){
