@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\WeatherApiService;
 use Illuminate\Http\Request;
 use App\Models\Task;
-use App\Models\TaskHistory;
 
 class TaskController extends Controller
 {
+    private WeatherApiService $weatherApiService;
+
+    public function __construct(WeatherApiService $weatherApiService)
+    {
+        $this->weatherApiService = $weatherApiService;
+    }
+
     public function create(Request $request){
         $data = $request->validate([
             'title' => 'required|string|max:255',
         ]);
         $data['user_id'] = auth()->id();
-
         Task::create($data);
 
         return redirect('/tasks');
@@ -29,11 +35,11 @@ class TaskController extends Controller
         return redirect('/tasks');
     }
 
-    public function showCompleted(){
+    public function showCompletedTasks(){
         return view('completedTasks',['tasks'=>Task::getCompletedTasks()]);
     }
 
     public function show(){
-        return view('dashboard',['tasks'=>Task::getTasks(),'weather'=>ApiController::getApiData()]);
+        return view('tasks',['tasks'=>Task::getTasks(),'weather'=>$this->weatherApiService->getApiData()]);
     }
 }

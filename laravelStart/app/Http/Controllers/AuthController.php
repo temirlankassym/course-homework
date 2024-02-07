@@ -36,7 +36,7 @@ class AuthController extends Controller
             return view('auth.login',["error"=>"Password or email is incorrect"]);
 
         auth()->login($user);
-        return view('dashboard',['tasks'=>Task::getTasks(),'weather'=>ApiController::getApiData()]);
+        return redirect('/tasks');
     }
 
     public function logout(){

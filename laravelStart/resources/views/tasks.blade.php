@@ -15,11 +15,15 @@
     <div id="weather-info" style="color: white">
         <strong>Weather in Almaty</strong>
         <br>
-        Temperature: {{$weather['current']['temp_c']}}
+        Temperature: {{$weather['current']['temp_c']}} °C
         <br>
-        Feels Like: {{$weather['current']['feelslike_c']}}
+        Feels Like: {{$weather['current']['feelslike_c']}} °C
         <br>
-        Wind: {{$weather['current']['wind_kph']}}
+        Wind: {{$weather['current']['wind_kph']}} km/h
+        <br>
+        {{$weather['current']['condition']['text']}}
+        <br>
+        <img src="{{$weather['current']['condition']['icon']}}" alt="">
     </div>
     <button id="logout-btn"><a href="/logout">Logout</a></button>
     <button id="history-btn"><a href="/completed">Completed Tasks</a></button>
@@ -42,5 +46,4 @@
     @endif
 </div>
 </body>
-
 </html>
